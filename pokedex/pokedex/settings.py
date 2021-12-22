@@ -30,6 +30,9 @@ DOWNLOAD_DELAY = 3
 #CONCURRENT_REQUESTS_PER_DOMAIN = 16
 #CONCURRENT_REQUESTS_PER_IP = 16
 
+# Encoding
+FEED_EXPORT_ENCODING = 'utf-8'
+
 # Disable cookies (enabled by default)
 #COOKIES_ENABLED = False
 
