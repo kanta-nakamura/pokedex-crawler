@@ -1,6 +1,6 @@
 # pokedex-crawler
 
-ポケモンのデータ（spのみ）を取得するクローラー<br>
+ポケモンのデータ（bdspのみ）を取得するクローラー<br>
 取得先：https://yakkun.com/
 
 ## 実行方法
