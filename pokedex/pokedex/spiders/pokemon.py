@@ -37,7 +37,7 @@ class PokemonSpider(CrawlSpider):
                 try:
                     item['type2'] = tr.css('img')[1].attrib['alt']
                 except IndexError:
-                    item['type2'] = None
+                    pass
 
         item['bs_hp'] = response.css('table[summary="詳細データ"] tr')[1].css('td::text').getall()[1].strip()
         item['bs_atk'] = response.css('table[summary="詳細データ"] tr')[2].css('td::text').getall()[1].strip()
