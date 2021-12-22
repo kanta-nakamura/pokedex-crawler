@@ -1,3 +1,4 @@
 # pokedex-crawler
 
-ポケモン徹底攻略(https://yakkun.com/)よりポケモンのデータを取得するクローラー
+ポケモンのデータを取得するクローラー<br>
+取得先：https://yakkun.com/
