@@ -18,17 +18,27 @@ class PokemonSpider(CrawlSpider):
         '''
 
         item = PokedexItem()
-        item['global_id'] = response.css('table[summary="基本データ"] tr')[3].css('td::text').getall()[1]
-        item['local_id'] = response.css('table[summary="基本データ"] tr')[4].css('td::text').getall()[1]
-        item['name_ja'] = response.css('table[summary="基本データ"] tr')[0].css('th::text').get()
-        item['name_en'] = response.css('table[summary="基本データ"] tr')[8].css('li::text').get()
-        item['height'] = response.css('table[summary="基本データ"] tr')[5].css('td::text').getall()[1]
-        item['weight'] = response.css('table[summary="基本データ"] tr')[6].css('li::text').getall()[0]
-        item['type1'] = response.css('table[summary="基本データ"] tr')[7].css('img')[0].attrib['alt']
-        try:
-            item['type2'] = response.css('table[summary="基本データ"] tr')[7].css('img')[1].attrib['alt']
-        except IndexError:  # 複合タイプでない場合
-            item['type2'] = None
+
+        for i, tr in enumerate(response.css('table[summary="基本データ"] tr')):
+            if i == 0:
+                item['name_ja'] = tr.css('::text').get()
+            elif tr.css('::text').get() == '全国No.':
+                item['global_id'] = tr.css('::text').getall()[1]
+            elif tr.css('::text').get() == 'シンオウNo.':
+                item['local_id'] = tr.css('::text').getall()[1]
+            elif tr.css('::text').get() == '高さ':
+                item['height'] = tr.css('::text').getall()[1]
+            elif tr.css('::text').get() == '重さ':
+                item['weight'] = tr.css('::text').getall()[1]
+            elif tr.css('::text').get() == '英語名':
+                item['name_en'] = tr.css('::text').getall()[1]
+            elif tr.css('::text').get() == 'タイプ':
+                item['type1'] = tr.css('img')[0].attrib['alt']
+                try:
+                    item['type2'] = tr.css('img')[1].attrib['alt']
+                except IndexError:
+                    item['type2'] = None
+
         item['bs_hp'] = response.css('table[summary="詳細データ"] tr')[1].css('td::text').getall()[1].strip()
         item['bs_atk'] = response.css('table[summary="詳細データ"] tr')[2].css('td::text').getall()[1].strip()
         item['bs_def'] = response.css('table[summary="詳細データ"] tr')[3].css('td::text').getall()[1].strip()
