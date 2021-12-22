@@ -9,7 +9,7 @@ class PokemonSpider(CrawlSpider):
     start_urls = ['https://yakkun.com/bdsp/zukan/']
 
     rules = (
-        Rule(LinkExtractor(allow=r'/n\d+$'), callback='parse_stats'),  # 特殊フォルムはクローリング対象外
+        Rule(LinkExtractor(allow=r'/bdsp/zukan/n\d+$'), callback='parse_stats'),  # 特殊フォルムはクローリング対象外
     )
 
     def parse_stats(self, response):
