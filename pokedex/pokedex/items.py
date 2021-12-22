@@ -17,7 +17,8 @@ class PokedexItem(scrapy.Item):
     name_en = scrapy.Field()  # ポケモン英語名
     height = scrapy.Field()  # 高さ
     weight = scrapy.Field()  # 重さ
-    type_ = scrapy.Field()  # タイプ
+    type1 = scrapy.Field()  # タイプ1
+    type2 = scrapy.Field()  # タイプ2
     bs_hp = scrapy.Field()  # 種族値(HP)
     bs_atk = scrapy.Field()  # 種族値(こうげき)
     bs_def = scrapy.Field()  # 種族値(ぼうぎょ)
